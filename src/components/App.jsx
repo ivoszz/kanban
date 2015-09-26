@@ -1,27 +1,21 @@
+import AltContainer from 'alt/AltContainer';
 import React, {Component} from 'react';
 import Notes from './Notes.jsx';
 import NoteActions from '../actions/NoteActions';
 import NoteStore from '../stores/NoteStore';
 
 export default class App extends Component {
-  constructor (props) {
-    super(props);
 
-    this.state = NoteStore.getState();
-
-    this.storeChanged = this.storeChanged.bind(this);
-  }
-
-  componentDidMount () {
-    NoteStore.listen(this.storeChanged);
-  }
-
-  componentWillUnmount () {
-    NoteStore.unlisten(this.storeChanged);
-  }
-
-  storeChanged (state) {
-    this.setState(state);
+  render () {
+    return (
+      <div>
+        <button className='add-note' onClick={this.addNote}>+</button>
+        <AltContainer stores={[NoteStore]}
+            inject={{items: () => NoteStore.getState().notes}}>
+          <Notes onEdit={this.editNote} onDelete={this.deleteNote} />
+        </AltContainer>
+      </div>
+    );
   }
 
   addNote () {
@@ -34,16 +28,5 @@ export default class App extends Component {
 
   deleteNote (id) {
     NoteActions.delete(id);
-  }
-
-  render () {
-    const notes = this.state.notes;
-    return (
-      <div>
-        <button className='add-note' onClick={this.addNote}>+</button>
-        <Notes items={notes}
-          onEdit={this.editNote} onDelete={this.deleteNote} />
-      </div>
-    );
   }
 }
