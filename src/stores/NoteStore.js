@@ -44,7 +44,6 @@ class NoteStore {
     this.setState({
       notes: notes.slice(0, noteIndex).concat(notes.slice(noteIndex + 1))
     });
-
   }
 
   findNote (id) {
