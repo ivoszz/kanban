@@ -3,9 +3,42 @@ body {
   font-family: sans-serif;
 }
 
-.add-note {
+.add-lane {
   background-color: #fdfdfd;
   border: 1px solid #ccc;
+}
+
+.lane {
+  display: inline-block;
+  margin: 1em;
+  background-color: #efefef;
+  border: 1px solid #ccc;
+  border-radius: .5em;
+  min-width: 10em;
+  vertical-align: top;
+}
+
+.lane-header {
+  overflow: auto;
+  padding: 1em;
+  color: #efefef;
+  background-color: #333;
+  border-top-left-radius: .5em;
+  border-top-right-radius: .5em;
+}
+
+.lane-name {
+  float: left;
+}
+
+.lane-add-note {
+  float: right;
+  margin-left: .5em;
+
+  button {
+    background-color: #fdfdfd;
+    border: 1px solid #ccc;
+  }
 }
 
 .notes {
@@ -23,7 +56,7 @@ body {
   background-color: #fdfdfd;
   box-shadow: 0 0 0.3em 0.03em rgba(0, 0, 0, 0.3);
 
-  .task {
+  .value {
     /* force to use inline-block so that it gets minimum height */
     display: inline-block;
 
